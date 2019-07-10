@@ -82,7 +82,7 @@ public class Board {
         Point cumulativeDistanceToTarget = new Point(direction.getLocation());
         Point slotToCheck = new Point(enemyPosition.x + cumulativeDistanceToTarget.x, enemyPosition.y + cumulativeDistanceToTarget.y);
         boolean exitWhileLoop = false;
-
+        //todo die while schleife sorgt für die freezes
         while (!exitWhileLoop) {
             if ((slotToCheck.y >= 0 && slotToCheck.x >= 0 && slotToCheck.y < MAX_BOARD_SIZE && slotToCheck.x < MAX_BOARD_SIZE)) {
                 if ((slots[slotToCheck.y][slotToCheck.x].toString() == Slot.EMPTY.toString())) {
@@ -123,7 +123,6 @@ public class Board {
     }
 
     public void changeEnemySlotsToCurrentPlayer(Point chosenLegalMovePoint, Player currentPlayer) {
-        //todo die while schleife sorgt für die freezes
 
         List<List<Point>> listWithTargetedLegalMoves = new ArrayList(legalMovesList.size());
         listWithTargetedLegalMoves.addAll(getTargetedMovePoints(chosenLegalMovePoint));
@@ -136,7 +135,7 @@ public class Board {
                     listWithTargetedLegalMoves.get(i).get(2).y + listWithTargetedLegalMoves.get(i).get(1).y);
 
             while (true) {
-                if (nextStep.x != listWithTargetedLegalMoves.get(i).get(0).x && nextStep.y != listWithTargetedLegalMoves.get(i).get(0).y) {
+                if (!nextStep.equals(listWithTargetedLegalMoves.get(i).get(0))) {
                     getSlots()[nextStep.y][nextStep.x] = currentPlayer.toString() == "PLAYER1" ? Slot.PLAYER1 : Slot.PLAYER2;
                 } else {
                     break;
@@ -145,18 +144,6 @@ public class Board {
                 nextStep.y += listWithTargetedLegalMoves.get(i).get(1).y;
             }
         }
-
-
-        /*
-
-
-                if (!nextStep.equals(listWithTargetedLegalMoves.get(i).get(0))) {
-                    getSlots()[nextStep.y][nextStep.x] = currentPlayer.toString() == "PLAYER1" ? Slot.PLAYER1 : Slot.PLAYER2;
-                } else {
-                    break;
-                }
-                nextStep.x += listWithTargetedLegalMoves.get(i).get(1).x;
-                nextStep.y += listWithTargetedLegalMoves.get(i).get(1).y;*/
     }
 
 

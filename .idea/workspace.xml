@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d51c1966-e877-49e8-82ef-aca399ed70d1" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/Panel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/Panel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/logic/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/Board.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -29,7 +28,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Panel.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Panel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/gui/Panel.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="214">
@@ -43,18 +42,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Board.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Board.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/logic/Board.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="169">
-              <caret line="159" selection-start-line="159" selection-end-line="159" />
+            <state relative-caret-position="300">
+              <caret line="84" column="55" selection-start-line="84" selection-start-column="55" selection-end-line="84" selection-end-column="55" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#Board#0;class#Board#0" />
                 <element signature="method#Board#1;class#Board#0" />
                 <element signature="method#checkSlotForCurrentPlayer#0;class#Board#0" />
                 <element signature="method#checkForSurroundingEnemies#0;class#Board#0" />
-                <element signature="method#calculateLegalMovesForThisSlot#0;class#Board#0" />
                 <element signature="method#addSlotToMoveList#0;class#Board#0" />
                 <element signature="method#setSubList#0;class#Board#0" />
                 <element signature="method#setLegalMovesSlots#0;class#Board#0" />
@@ -102,8 +100,8 @@
         <option value="$PROJECT_DIR$/src/main/java/logic/Slot.java" />
         <option value="$PROJECT_DIR$/src/main/java/logic/Turn.java" />
         <option value="$PROJECT_DIR$/src/main/java/Main.java" />
-        <option value="$PROJECT_DIR$/src/main/java/logic/Board.java" />
         <option value="$PROJECT_DIR$/src/main/java/gui/Panel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/logic/Board.java" />
       </list>
     </option>
   </component>
@@ -260,7 +258,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1696" height="1066" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -271,7 +268,7 @@
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2963362" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.2963362" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
@@ -296,14 +293,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/logic/Board.java</url>
-          <line>133</line>
-          <properties />
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
       <option name="time" value="3" />
     </breakpoint-manager>
   </component>
@@ -340,7 +329,6 @@
             <element signature="method#Board#1;class#Board#0" />
             <element signature="method#checkSlotForCurrentPlayer#0;class#Board#0" />
             <element signature="method#checkForSurroundingEnemies#0;class#Board#0" />
-            <element signature="method#calculateLegalMovesForThisSlot#0;class#Board#0" />
             <element signature="method#addSlotToMoveList#0;class#Board#0" />
             <element signature="method#setSubList#0;class#Board#0" />
             <element signature="method#setLegalMovesSlots#0;class#Board#0" />
@@ -413,28 +401,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/logic/Board.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="159" selection-start-line="159" selection-end-line="159" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#Board#0;class#Board#0" />
-            <element signature="method#Board#1;class#Board#0" />
-            <element signature="method#checkSlotForCurrentPlayer#0;class#Board#0" />
-            <element signature="method#checkForSurroundingEnemies#0;class#Board#0" />
-            <element signature="method#calculateLegalMovesForThisSlot#0;class#Board#0" />
-            <element signature="method#addSlotToMoveList#0;class#Board#0" />
-            <element signature="method#setSubList#0;class#Board#0" />
-            <element signature="method#setLegalMovesSlots#0;class#Board#0" />
-            <element signature="method#getTargetedMovePoints#0;class#Board#0" />
-            <element signature="method#deleteUsedPointsFromParentList#0;class#Board#0" />
-            <element signature="method#changeLegalSlotToPlayerSlot#0;class#Board#0" />
-            <element signature="method#clearBoardFromEnemyLegalMoves#0;class#Board#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/gui/Panel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="214">
@@ -443,6 +409,27 @@
             <element signature="imports" expanded="true" />
             <element signature="method#createLabels#0;class#Panel#0" />
             <element signature="method#drawStarGameInfo#0;class#Panel#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/logic/Board.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="84" column="55" selection-start-line="84" selection-start-column="55" selection-end-line="84" selection-end-column="55" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#Board#0;class#Board#0" />
+            <element signature="method#Board#1;class#Board#0" />
+            <element signature="method#checkSlotForCurrentPlayer#0;class#Board#0" />
+            <element signature="method#checkForSurroundingEnemies#0;class#Board#0" />
+            <element signature="method#addSlotToMoveList#0;class#Board#0" />
+            <element signature="method#setSubList#0;class#Board#0" />
+            <element signature="method#setLegalMovesSlots#0;class#Board#0" />
+            <element signature="method#getTargetedMovePoints#0;class#Board#0" />
+            <element signature="method#deleteUsedPointsFromParentList#0;class#Board#0" />
+            <element signature="method#changeLegalSlotToPlayerSlot#0;class#Board#0" />
+            <element signature="method#clearBoardFromEnemyLegalMoves#0;class#Board#0" />
           </folding>
         </state>
       </provider>
