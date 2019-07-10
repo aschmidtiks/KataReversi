@@ -102,30 +102,6 @@ public class Panel extends JPanel {
         });
     }
 
-    SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
-        @Override
-        protected Void doInBackground() throws Exception {
-            addMouseListener(new MouseAdapter() {
-                @Override
-                public void mousePressed(MouseEvent e) {
-                    if (game != null) {
-                        Point mousePos = new Point(e.getX() / SLOT_WIDTH, e.getY() / SLOT_HEIGHT);
-                        if (game.getBoard().getSlots()[mousePos.y][mousePos.x] == Slot.LEGAL_POSITION_P1) {
-                            game.getBoard().changeLegalSlotToPlayerSlot(Slot.PLAYER1, mousePos.y, mousePos.x, game.getTurn().getCurrentPlayer());
-                            repaint();
-                            game.nextRound();
-                        } else if (game.getBoard().getSlots()[mousePos.y][mousePos.x] == Slot.LEGAL_POSITION_P2) {
-                            game.getBoard().changeLegalSlotToPlayerSlot(Slot.PLAYER2, mousePos.y, mousePos.x, game.getTurn().getCurrentPlayer());
-                            repaint();
-                            game.nextRound();
-                        }
-                    }
-                }
-            });
-
-            return null;
-        }
-    };
 
     private void start() {
         game = new Game();

@@ -136,7 +136,7 @@ public class Board {
                     listWithTargetedLegalMoves.get(i).get(2).y + listWithTargetedLegalMoves.get(i).get(1).y);
 
             while (true) {
-                if (!nextStep.equals(listWithTargetedLegalMoves.get(i).get(0))) {
+                if (nextStep.x != listWithTargetedLegalMoves.get(i).get(0).x && nextStep.y != listWithTargetedLegalMoves.get(i).get(0).y) {
                     getSlots()[nextStep.y][nextStep.x] = currentPlayer.toString() == "PLAYER1" ? Slot.PLAYER1 : Slot.PLAYER2;
                 } else {
                     break;
@@ -145,7 +145,21 @@ public class Board {
                 nextStep.y += listWithTargetedLegalMoves.get(i).get(1).y;
             }
         }
+
+
+        /*
+
+
+                if (!nextStep.equals(listWithTargetedLegalMoves.get(i).get(0))) {
+                    getSlots()[nextStep.y][nextStep.x] = currentPlayer.toString() == "PLAYER1" ? Slot.PLAYER1 : Slot.PLAYER2;
+                } else {
+                    break;
+                }
+                nextStep.x += listWithTargetedLegalMoves.get(i).get(1).x;
+                nextStep.y += listWithTargetedLegalMoves.get(i).get(1).y;*/
     }
+
+
 
     private List<List<Point>> getTargetedMovePoints(Point chosenLegalMovePoint) {
         List<List<Point>> tempListWithTargetedLegalMoves = new ArrayList(legalMovesList.size());
