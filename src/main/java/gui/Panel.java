@@ -5,7 +5,6 @@ import logic.Slot;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.lang.reflect.InvocationTargetException;
 
 public class Panel extends JPanel {
 
@@ -21,11 +20,14 @@ public class Panel extends JPanel {
     private final int START_INFO_RECT_Y_POSITION;
 
     private JButton startButton = new JButton();
+
     private JLabel infoText = new JLabel();
     private JLabel infoTextPlayer1 = new JLabel();
     private JLabel infoTextPlayer2 = new JLabel();
+    private JLabel winnerText1 = new JLabel();
+    private JLabel winnerText2 = new JLabel();
 
-    private transient Game game;
+    private Game game;
 
     public Panel(int rows, int columns) {
         this.setFocusable(true);
@@ -61,6 +63,19 @@ public class Panel extends JPanel {
         this.infoTextPlayer2.setBounds(START_INFO_RECT_X_POSITION + 50,infoTextPlayer1.getY() + infoTextPlayer1.getHeight(),
                 START_INFO_RECT_WIDTH - 50,START_INFO_RECT_HEIGHT/5);
 
+        this.winnerText1.setText("Player 1 won!");
+        this.winnerText1.setBounds(START_INFO_RECT_X_POSITION + 50,infoTextPlayer1.getY() + infoTextPlayer1.getHeight(),
+                START_INFO_RECT_WIDTH - 50,START_INFO_RECT_HEIGHT/5);
+
+        this.winnerText2.setText("Player 2 won!");
+        this.winnerText2.setBounds(START_INFO_RECT_X_POSITION + 50,infoTextPlayer1.getY() + infoTextPlayer1.getHeight(),
+                START_INFO_RECT_WIDTH - 50,START_INFO_RECT_HEIGHT/5);
+
+        winnerText1.setVisible(false);
+        winnerText2.setVisible(false);
+
+        this.add(winnerText1);
+        this.add(winnerText2);
         this.add(infoText);
         this.add(infoTextPlayer1);
         this.add(infoTextPlayer2);
@@ -92,16 +107,22 @@ public class Panel extends JPanel {
                         game.getBoard().changeLegalSlotToPlayerSlot(Slot.PLAYER1, mousePos.y, mousePos.x, game.getTurn().getCurrentPlayer());
                         repaint();
                         game.nextRound();
+                       if (!game.checkBoard()) {
+                         repaint();
+                        }
+
                     } else if (game.getBoard().getSlots()[mousePos.y][mousePos.x] == Slot.LEGAL_POSITION_P2) {
                         game.getBoard().changeLegalSlotToPlayerSlot(Slot.PLAYER2, mousePos.y, mousePos.x, game.getTurn().getCurrentPlayer());
                         repaint();
                         game.nextRound();
+                        if (game.checkBoard()) {
+                           repaint();
+                        }
                     }
                 }
             }
         });
     }
-
 
     private void start() {
         game = new Game();
@@ -112,9 +133,23 @@ public class Panel extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         if(game != null) {
-            drawBoard(g);
+            if (!game.isGameHasEnd()) {
+                drawBoard(g);
+            } else {
+                drawEndScreen(g);
+            }
         } else {
-            drawStarGameInfo(g);
+            drawStartInfo(g);
+        }
+    }
+
+    private void drawEndScreen(Graphics g) {
+        g.setColor(Color.WHITE);
+        g.fillRect(START_INFO_RECT_X_POSITION, START_INFO_RECT_Y_POSITION, START_INFO_RECT_WIDTH, START_INFO_RECT_HEIGHT);
+        if (game.pointsPlayer[0] > game.pointsPlayer[1]) {
+            this.winnerText1.setVisible(true);
+        } else {
+            this.winnerText2.setVisible(true);
         }
     }
 
@@ -162,9 +197,8 @@ public class Panel extends JPanel {
         }
     }
 
-    private void drawStarGameInfo(Graphics g) {
+    private void drawStartInfo(Graphics g) {
         g.setColor(Color.WHITE);
         g.fillRect(START_INFO_RECT_X_POSITION, START_INFO_RECT_Y_POSITION, START_INFO_RECT_WIDTH, START_INFO_RECT_HEIGHT);
-
     }
 }

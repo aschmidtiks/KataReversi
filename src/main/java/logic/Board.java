@@ -1,5 +1,7 @@
 package logic;
 
+import gui.Panel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.*;
@@ -10,6 +12,8 @@ public class Board {
     private Slot[][] slots = new Slot[8][8];
     private static final int MAX_BOARD_SIZE = 8;
     private List<List<Point>> legalMovesList = new ArrayList(MAX_BOARD_SIZE);
+
+    private boolean boardFull = false;
 
     private Slot[][] defaultBoard = {
             {Slot.EMPTY, Slot.EMPTY, Slot.EMPTY, Slot.EMPTY, Slot.EMPTY, Slot.EMPTY, Slot.EMPTY, Slot.EMPTY},
@@ -37,10 +41,13 @@ public class Board {
         }
     }
 
-
     public boolean calculateLegalMoves(Player currentPlayer) {
         getLegalMovesList().clear();
         checkSlotForCurrentPlayer(currentPlayer);
+        if (legalMovesList.size() == 0) {
+           boardFull = true;
+           return false;
+        }
         setLegalMovesSlots(currentPlayer);
         return true;
     }
@@ -81,22 +88,23 @@ public class Board {
     private void calculateLegalMovesForThisSlot(Point direction, Point playerPosition, Point enemyPosition, Player currentPlayer) {
         Point cumulativeDistanceToTarget = new Point(direction.getLocation());
         Point slotToCheck = new Point(enemyPosition.x + cumulativeDistanceToTarget.x, enemyPosition.y + cumulativeDistanceToTarget.y);
-        boolean exitWhileLoop = false;
-        //todo die while schleife sorgt für die freezes
-        while (!exitWhileLoop) {
+
+        while (true) {
             if ((slotToCheck.y >= 0 && slotToCheck.x >= 0 && slotToCheck.y < MAX_BOARD_SIZE && slotToCheck.x < MAX_BOARD_SIZE)) {
                 if ((slots[slotToCheck.y][slotToCheck.x].toString() == Slot.EMPTY.toString())) {
                     addSlotToMoveList(direction, cumulativeDistanceToTarget, playerPosition, enemyPosition);
-                    exitWhileLoop = true;
+                    break;
                 }
                 else if ((slots[slotToCheck.y][slotToCheck.x].toString() != currentPlayer.toString())) {
-                    cumulativeDistanceToTarget.y += direction.getY();
-                    cumulativeDistanceToTarget.x += direction.getX();
+                    cumulativeDistanceToTarget.y += direction.y;
+                    cumulativeDistanceToTarget.x += direction.x;
+                    slotToCheck.y += direction.getY();
+                    slotToCheck.x += direction.getX();
                 } else {
-                    exitWhileLoop = true;
+                    break;
                 }
             } else {
-                exitWhileLoop = true;
+                break;
             }
         }
     }
@@ -128,7 +136,9 @@ public class Board {
         listWithTargetedLegalMoves.addAll(getTargetedMovePoints(chosenLegalMovePoint));
 
         clearBoardFromEnemyLegalMoves();
+        if (legalMovesList.size() > 1) {
         deleteUsedPointsFromParentList(listWithTargetedLegalMoves);
+        }
 
         for (int i = 0; i < listWithTargetedLegalMoves.size(); i++) {
             Point nextStep = new Point(listWithTargetedLegalMoves.get(i).get(2).x + listWithTargetedLegalMoves.get(i).get(1).x,
@@ -146,7 +156,19 @@ public class Board {
         }
     }
 
-
+    public int[] countPoints() {
+        int[] tempPlayer = new int[2];
+        for (int i = 0; i < MAX_BOARD_SIZE; i++) {
+            for (int j = 0; j < MAX_BOARD_SIZE; j++) {
+                if (slots[i][j] == Slot.PLAYER1) {
+                    tempPlayer[0]++;
+                } else  if (slots[i][j] == Slot.PLAYER2) {
+                    tempPlayer[1]++;
+                }
+            }
+        }
+        return tempPlayer;
+    }
 
     private List<List<Point>> getTargetedMovePoints(Point chosenLegalMovePoint) {
         List<List<Point>> tempListWithTargetedLegalMoves = new ArrayList(legalMovesList.size());
@@ -162,8 +184,10 @@ public class Board {
 
     private void deleteUsedPointsFromParentList(List<List<Point>> listWithTargetedLegalMoves) {
         for (int i = 0; i < listWithTargetedLegalMoves.size(); i++) {
-            if (legalMovesList.contains(listWithTargetedLegalMoves.get(i))) {
-                legalMovesList.remove(i);
+            if (legalMovesList.size() > 1) {
+                if (legalMovesList.contains(listWithTargetedLegalMoves.get(i))) {
+                    legalMovesList.remove(i);
+                }
             }
         }
     }
@@ -186,12 +210,13 @@ public class Board {
     public Slot[][] getSlots() {
         return slots;
     }
-
     public void setSlot(Slot slotValue, int y, int x) {
         slots[y][x] = slotValue;
     }
-
     public List<List<Point>> getLegalMovesList() {
         return legalMovesList;
+    }
+    public boolean isBoardFull() {
+        return boardFull;
     }
 }

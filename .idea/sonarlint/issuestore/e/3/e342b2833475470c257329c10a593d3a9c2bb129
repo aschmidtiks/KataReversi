@@ -1,3 +1,7 @@
 
-Msquid:S1066G"/Merge this if statement with the enclosing one.(û«÷é8Ú­ôá½-
-Osquid:S1135U"2Complete the task associated to this TODO comment.(’×…w8†¤–ã½-
+{
+squid:S135\"YReduce the total number of break and continue statements in this loop to use at most one.(˜ïˆžÿÿÿÿÿ8¾î²„¾-
+Msquid:S1066N"/Merge this if statement with the enclosing one.(û«÷é8¾î²„¾-
+Qsquid:UselessImportCheck"&Remove this unused import 'gui.Panel'.(²âÍç8‡ª„¾-
+Nsquid:S1066¼"/Merge this if statement with the enclosing one.(†Ü«Ò8ö˜ä…¾-
+asquid:S1155/">Use isEmpty() to check whether the collection is empty or not.(É¶î¶þÿÿÿÿ8¾î²„¾-
