@@ -1,3 +1,3 @@
 
-"squid:ClassVariableVisibilityCheck"XMake pointsPlayer a static final constant or non-public and provide accessors if needed.(ÂÎ8íÿ…¾-
 Qsquid:UselessImportCheck"&Remove this unused import 'gui.Panel'.(²âÍç8Ä±Úá½-
+"squid:ClassVariableVisibilityCheck"XMake pointsPlayer a static final constant or non-public and provide accessors if needed.(ÂÎ8íÿ…¾-
